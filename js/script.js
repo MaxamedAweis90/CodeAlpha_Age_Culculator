@@ -3,7 +3,7 @@ const monthInput = document.getElementById('month');
 const dayInput = document.getElementById('day');
 const yearInput = document.getElementById('year');
 
-const calendarIcon = document.getElementById('calendar-icon');
+// const calendarIcon = document.getElementById('calendar-icon');
 const hiddenDatePicker = document.getElementById('hidden-date-picker');
 
 const calculateBtn = document.getElementById('calculate-btn');
@@ -20,11 +20,6 @@ const livedMonths = document.getElementById('lived-months');
 const loading = document.getElementById('loading');
 
 
-// 1. Calendar icon click opens hidden date input (native picker)
-calendarIcon.addEventListener('click', () => {
-  hiddenDatePicker.click();
-});
-
 // 2. When user picks date, update the three inputs
 hiddenDatePicker.addEventListener('input', () => {
   if (!hiddenDatePicker.value) return;
@@ -38,7 +33,7 @@ hiddenDatePicker.addEventListener('input', () => {
 
 // Helper function: pad input and limit max values
 function padInput(input, max) {
-  let val = input.value.replace(/\D/g, ''); // remove non-digit chars
+  let val = input.value.replace(/\D/g, '');
   if (val.length === 1) {
     let num = parseInt(val, 10);
     val = num > max ? max.toString().padStart(2, '0') : val.padStart(2, '0');
@@ -81,9 +76,7 @@ yearInput.addEventListener('input', () => {
   yearInput.value = yearInput.value.replace(/\D/g, '').slice(0, 4);
 });
 yearInput.addEventListener('blur', () => {
-  if (yearInput.value.length < 4) {
-    yearInput.value = yearInput.value.padStart(4, '0');
-  }
+
 });
 
 // 4. Calculate button click logic with loading and slide-down animation
