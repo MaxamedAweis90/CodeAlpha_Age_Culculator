@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Age Calculator App</title>
+  <link rel="stylesheet" href="styles/style.css" />
+  <link rel="stylesheet" href="styles/background.css" />
+  <script src="js/script.js" defer></script>
+  <style>
+    /* Spinner animation */
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* Slide down animation */
+    @keyframes slideDown {
+      from {
+        max-height: 0;
+        opacity: 0;
+      }
+      to {
+        max-height: 800px;
+        opacity: 1;
+      }
+    }
+
+    #result-box.slide-down {
+      animation: slideDown 0.5s ease forwards;
+      overflow: hidden;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <h2>Age Calculator App</h2>
+    <div class="container">
+
+      <!-- Date of Birth Label -->
+      <label for="month" class="dob-label">Date of Birth</label>
+
+      <!-- Date Input Fields -->
+      <div class="input-wrapper date-inputs">
+        <input type="text" id="month" placeholder="MM" maxlength="2" autocomplete="off" required />
+        <span class="slash">/</span>
+        <input type="text" id="day" placeholder="DD" maxlength="2" autocomplete="off" required />
+        <span class="slash">/</span>
+        <input type="text" id="year" placeholder="YYYY" maxlength="4" autocomplete="off" required />
+
+        <!-- Calendar Icon -->
+        <div class="calendar-icon" style="cursor: pointer;" title="Pick a date" id="calendar-icon">
+          <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M7 2a1 1 0 1 1 2 0v1h6V2a1 1 0 1 1 2 0v1h1.5A2.5 2.5 0 0 1 21 5.5V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5.5A2.5 2.5 0 0 1 5.5 3H7V2Zm0 3H5.5a.5.5 0 0 0-.5.5V7h14V5.5a.5.5 0 0 0-.5-.5H17v1a1 1 0 1 1-2 0V5H9v1a1 1 0 1 1-2 0V5ZM19 9H5v10h14V9Z"/>
+          </svg>
+        </div>
+
+        <!-- Hidden native date input -->
+        <input type="date" id="hidden-date-picker" style="opacity: 0; position: absolute; width: 1px; height: 1px; left: 0; top: 0; pointer-events: auto;" />
+      </div>
+
+      <!-- Calculate Button -->
+      <button id="calculate-btn">Calculate Age</button>
+
+      <!-- Loading Spinner (hidden by default) -->
+      <div id="loading" style="display:none; margin-top: 20px; text-align: center;">
+        <svg width="40" height="40" viewBox="0 0 50 50" style="animation: spin 1s linear infinite;">
+          <circle cx="25" cy="25" r="20" stroke="#007bff" stroke-width="5" fill="none" stroke-linecap="round"/>
+        </svg>
+      </div>
+
+      <!-- Results Box (hidden initially) -->
+      <div id="result-box" class="result-wrapper" style="display:none; margin-top: 30px; padding: 20px; border: 2px solid #ccc; border-radius: 10px; background: #f9f9f9;">
+
+        <!-- 🎉 Age Breakdown -->
+        <div class="result-section">
+          <h3>🎉 Your Age</h3>
+          <div class="age-boxes">
+            <div class="age-box">
+              <label>Years</label>
+              <div class="age-value" id="result-years">--</div>
+            </div>
+            <div class="age-box">
+              <label>Months</label>
+              <div class="age-value" id="result-months">--</div>
+            </div>
+            <div class="age-box">
+              <label>Days</label>
+              <div class="age-value" id="result-days">--</div>
+            </div>
+          </div>
+        </div>
+
+        <hr style="margin: 20px 0;" />
+
+        <!-- 📊 Time Lived -->
+        <div class="result-section">
+          <h3>📊 Time You've Lived</h3>
+          <div class="result-item"><strong>Total Days:</strong> <span id="lived-days">--</span></div>
+          <div class="result-item"><strong>Total Weeks:</strong> <span id="lived-weeks">--</span></div>
+          <div class="result-item"><strong>Total Months:</strong> <span id="lived-months">--</span></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</body>
+</html>
